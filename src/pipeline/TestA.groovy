@@ -1,7 +1,7 @@
 package pipeline
 
 public void test(){
-    echo "echo"
+    echo "PRINT MESSAGE"
 }
 
 return this
