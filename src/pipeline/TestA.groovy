@@ -4,13 +4,19 @@ public void test() {
     agent any
     stages {
         stage('Build') {
-            echo "Build stage"
+            steps{
+                echo "Build stage"
+            }
         }
         stage('Test') {
-            echo "Test stage"
+            steps{
+                echo "Test stage"
+            }
         }
         stage('Deploy') {
-            echo "Deploy stage"
+            steps{
+                echo "Deploy stage"
+            }
         }
     }
 }
