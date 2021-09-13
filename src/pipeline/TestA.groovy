@@ -1,21 +1,23 @@
 package pipeline
 
 public void test() {
-    agent any
-    stages {
-        stage('Build') {
-            steps{
-                echo "Build stage"
+    pipeline{
+        agent any
+        stages {
+            stage('Build') {
+                steps{
+                    echo "Build stage"
+                }
             }
-        }
-        stage('Test') {
-            steps{
-                echo "Test stage"
+            stage('Test') {
+                steps{
+                    echo "Test stage"
+                }
             }
-        }
-        stage('Deploy') {
-            steps{
-                echo "Deploy stage"
+            stage('Deploy') {
+                steps{
+                    echo "Deploy stage"
+                }
             }
         }
     }
