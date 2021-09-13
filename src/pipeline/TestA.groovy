@@ -1,17 +1,25 @@
 package pipeline
 
 public void test(){
-    node(any()){
-        stage("Build"){
-            echo "Build stage"
-        }
-        stage("Test"){
-            echo "Test stage"
-        }
-        stage("Deploy"){
-            echo "Deploy stage"
+    pipeline {
+        agent none
+        stages {
+            stage('Build') {
+                steps {
+                    echo 'Buils Stage'
+                }
+            }
+            stage('Test') {
+                steps {
+                    echo 'Test stage'
+                }
+            }
+            stage('Deploy') {
+                steps {
+                    echo 'Deploy stage'
+                }
+            }
         }
     }
-}
 
 return this
