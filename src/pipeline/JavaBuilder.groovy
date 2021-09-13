@@ -25,9 +25,9 @@ private void runMaven(command) {
 //        }
 
     } else {
-//        withEnv(["JAVA_HOME=OLOLOL"]){
+        withEnv(["JAVA_HOME=C:\\Users\\vstup\\.jdks\\corretto-1.8.0_292"]){
         bat "mvn ${command}"
-//        }
+        }
     }
 }
 
