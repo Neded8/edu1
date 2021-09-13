@@ -1,7 +1,17 @@
 package pipeline
 
 public void test(){
-    echo "PRINT MESSAGE"
+    node(any()){
+        stage("Build"){
+            echo "Build stage"
+        }
+        stage("Test"){
+            echo "Test stage"
+        }
+        stage("Deploy"){
+            echo "Deploy stage"
+        }
+    }
 }
 
 return this
