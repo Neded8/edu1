@@ -12,6 +12,14 @@ public void test() {
                 echo line
             }
         }
+        stage("Third stage"){
+            if(isUnix()){
+                sh "echo 'some text' > file2"
+            }
+            else{
+                bat "echo 'some text' > file2"
+            }
+        }
 
     }
 }
