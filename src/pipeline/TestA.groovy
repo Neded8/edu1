@@ -5,6 +5,13 @@ public void test() {
         stage("Build"){
             echo "Build stage"
         }
+        stage("Second"){
+            dir("some_folder"){
+                writeFile(file:"file.txt",text:"some text")
+                def line = readFile(file:"file.txt")
+                echo line
+            }
+        }
 
     }
 }
