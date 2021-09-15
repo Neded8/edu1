@@ -31,8 +31,18 @@ private void runMaven(command) {
     }
 }
 
+private void updateSprite(){
+    stage("Sprite update"){
+        echo "[INFO] run bat file for move sprite"
+        bat "C:\\Users\\vstup\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\MoveHumanSprite.bat"
+    }
+
+}
+
+
+
 private void buildMaven() {
-    stage("build") {
+    stage("Build") {
         runMaven("clean package")
     }
 }
@@ -45,6 +55,7 @@ void run(String nodeName, String repoURL, String branchName, String spriteRepoUR
         }
         dir("${env.WORKSPACE}/HVSP") {
             getSourceCode(repoURL, branchName)
+            updateSprite()
             buildMaven()
         }
     }
