@@ -42,6 +42,9 @@ void run(String nodeName, String repoURL, String branchName, String spriteRepoUR
         cleanUp()
         getSourceCode(repoURL, branchName)
         bat "cd"
+        dir("${env.WORKSPACE}/aQA"){
+            bat "cd"
+        }
 //        getSourceCode(spriteRepoURL, branchName)
 //        sh "pwd"
         buildMaven()
