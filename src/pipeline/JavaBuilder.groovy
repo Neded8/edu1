@@ -39,11 +39,13 @@ private void buildMaven() {
 
 void run(String nodeName, String repoURL, String branchName, String spriteRepoURL) {
     node(nodeName) {
-        cleanUp()
-        getSourceCode(repoURL, branchName)
-        bat "cd"
-        dir("${env.WORKSPACE}")
-        bat "cd"
+        dir("${env.WORKSPACE}"){
+            cleanUp()
+            getSourceCode(repoURL, branchName)
+            getSourceCode(spriteRepoURL, branchName)
+            bat "cd"
+        }
+
 //        getSourceCode(spriteRepoURL, branchName)
 //        sh "pwd"
         buildMaven()
