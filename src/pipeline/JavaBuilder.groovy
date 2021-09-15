@@ -41,7 +41,7 @@ void run(String nodeName, String repoURL, String branchName, String spriteRepoUR
     node(nodeName) {
         cleanUp()
         getSourceCode(repoURL, branchName)
-//        sh "pwd"
+        cmd "cd"
 //        getSourceCode(spriteRepoURL, branchName)
 //        sh "pwd"
         buildMaven()
