@@ -37,11 +37,14 @@ private void buildMaven() {
     }
 }
 
-void run(String nodeName, String repoURL, String branchName) {
+void run(String nodeName, String repoURL, String branchName, String spriteRepoURL) {
     node(nodeName) {
 //        cleanUp()
         getSourceCode(repoURL, branchName)
+        getSourceCode(spriteRepoURL, branchName)
+
         buildMaven()
+
     }
 
 }
