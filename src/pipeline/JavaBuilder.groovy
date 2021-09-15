@@ -39,7 +39,7 @@ private void buildMaven() {
 
 void run(String nodeName, String repoURL, String branchName) {
     node(nodeName) {
-        cleanUp()
+//        cleanUp()
         getSourceCode(repoURL, branchName)
         buildMaven()
     }
