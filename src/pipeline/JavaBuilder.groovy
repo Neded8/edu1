@@ -40,9 +40,12 @@ private void buildMaven() {
 void run(String nodeName, String repoURL, String branchName, String spriteRepoURL) {
     node(nodeName) {
         cleanUp()
-        getSourceCode(repoURL, branchName)
-        dir("../"){
+        dir("${env.WORKSPACE}/HSVP-Sprites") {
             getSourceCode(spriteRepoURL, branchName)
+        }
+        dir("${env.WORKSPACE}/HVSP") {
+            getSourceCode(repoURL, branchName)
+            buildMaven()
         }
     }
 }
