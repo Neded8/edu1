@@ -25,8 +25,8 @@ private void runMaven(command) {
 //        }
 
     } else {
-        withEnv(["JAVA_HOME=C:\\Users\\vstup\\.jdks\\corretto-1.8.0_292"]){
-        bat "mvn ${command}"
+        withEnv(["JAVA_HOME=C:\\Users\\vstup\\.jdks\\corretto-1.8.0_292"]) {
+            bat "mvn ${command}"
         }
     }
 }
@@ -39,25 +39,11 @@ private void buildMaven() {
 
 void run(String nodeName, String repoURL, String branchName, String spriteRepoURL) {
     node(nodeName) {
-        dir("${env.WORKSPACE}"){
-            cleanUp()
-            getSourceCode(repoURL, branchName)
-//            getSourceCode(spriteRepoURL, branchName)
-            bat "cd"
-        }
-
-//        getSourceCode(spriteRepoURL, branchName)
-//        sh "pwd"
-        dir("${env.WORKSPACE}/edu1"){
-            buildMaven()
-        }
-
-
-
-
+        cleanUp()
+        getSourceCode(repoURL, branchName)
     }
-
 }
+
 
 return this
 
