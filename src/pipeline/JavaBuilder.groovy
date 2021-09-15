@@ -48,7 +48,7 @@ void run(String nodeName, String repoURL, String branchName, String spriteRepoUR
 
 //        getSourceCode(spriteRepoURL, branchName)
 //        sh "pwd"
-        buildMaven()
+       // buildMaven()
 
 
 
