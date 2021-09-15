@@ -41,6 +41,9 @@ void run(String nodeName, String repoURL, String branchName, String spriteRepoUR
     node(nodeName) {
         cleanUp()
         getSourceCode(repoURL, branchName)
+        dir("../"){
+            getSourceCode(spriteRepoURL, branchName)
+        }
     }
 }
 
