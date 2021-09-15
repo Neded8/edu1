@@ -48,7 +48,9 @@ void run(String nodeName, String repoURL, String branchName, String spriteRepoUR
 
 //        getSourceCode(spriteRepoURL, branchName)
 //        sh "pwd"
-       // buildMaven()
+        dir("${env.WORKSPACE}/edu1"){
+            buildMaven()
+        }
 
 
 
