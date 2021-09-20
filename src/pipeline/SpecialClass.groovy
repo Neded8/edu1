@@ -3,12 +3,12 @@ package pipeline
 class SpecialClass {
     String sourceRepoURL
     String branchName
-    String folderPath
+    String copyScript
 
     SpecialClass(String sourceRepoURL, String branchName, String folderPath) {
         this.sourceRepoURL = sourceRepoURL
         this.branchName = branchName
-        this.folderPath = folderPath
+        this.copyScript = folderPath
     }
 
 }

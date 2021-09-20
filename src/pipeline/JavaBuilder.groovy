@@ -32,13 +32,19 @@ private void runMaven(command) {
     }
 }
 
-private void updateSprite() {
-    stage("Sprite update") {
-        echo "[INFO] run bat file for move sprite"
-        bat "C:\\Users\\vstup\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\MoveHumanSprite.bat"
-    }
-
-}
+//private void updateSprite(Collection<SpecialClass> specialList) {
+//    stage("Sprite update") {
+//        echo "[INFO] run bat file for move sprite"
+//        for (def obj in specialList){
+//            withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source"]){
+//                bat obj.copyScript
+//            }
+//
+//        }
+////        bat "C:\\Users\\vstup\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\MoveHumanSprite.bat"
+//    }
+//
+//}
 
 
 private void buildMaven() {
@@ -51,21 +57,25 @@ private void buildMaven() {
 void runScript(String nodeName, String repoURL, String branchName, Collection<SpecialClass> specialList) {
     node(nodeName) {
         cleanUp()
-        getAssets(specialList)
         dir("source") {
             getSourceCode(repoURL, branchName)
-            updateSprite()
+        }
+        getAssets(specialList)
+        dir("source") {
             buildMaven()
         }
     }
 }
 
 private void getAssets(Collection<SpecialClass> specialList) {
-    stage("getAssets"){
+    stage("getAssets") {
         def i = 0
         for (def obj in specialList) {
             dir("assets/${i}") {
                 getSourceCode(obj.sourceRepoURL, obj.branchName)
+                withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source"]){
+                    bat obj.copyScript
+                }
             }
             i++
         }
