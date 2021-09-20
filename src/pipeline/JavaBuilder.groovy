@@ -1,6 +1,5 @@
 package pipeline
 
-import picocli.CommandLine.Spec
 
 private void cleanUp() {
     stage("clean home directory") {
