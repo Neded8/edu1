@@ -1,5 +1,7 @@
 package pipeline
 
+import picocli.CommandLine.Spec
+
 private void cleanUp() {
     stage("clean home directory") {
         echo "delete current directory"
@@ -47,11 +49,22 @@ private void buildMaven() {
     }
 }
 
-void run(String nodeName, String repoURL, String branchName, String spriteRepoURL) {
+void startPoint(String nodeName, String repoURL, String branchName){
+    List data = [
+            new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"),
+            new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"),
+            new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human")]
+    runScript(nodeName,repoURL,branchName,data)
+
+}
+
+void runScript(String nodeName, String repoURL, String branchName, List<SpecialClass> specialArray) {
     node(nodeName) {
         cleanUp()
-        dir("${env.WORKSPACE}/HSVP-Sprites") {
-            getSourceCode(spriteRepoURL, branchName)
+        for (i = 0; i< specialArray.size(); i++){
+            dir(${env.WORKSPACE}+"/"+i){
+                getSourceCode(specialArray.get(i).sourceRepoURL,specialArray.get(i).branchName)
+            }
         }
         dir("${env.WORKSPACE}/HVSP") {
             getSourceCode(repoURL, branchName)
