@@ -62,7 +62,7 @@ void runScript(String nodeName, String repoURL, String branchName, List<SpecialC
     node(nodeName) {
         cleanUp()
         for (i = 0; i< specialArray.size(); i++){
-            dir(${env.WORKSPACE}+"/"+i){
+            dir(i){
                 getSourceCode(specialArray.get(i).sourceRepoURL,specialArray.get(i).branchName)
             }
         }
