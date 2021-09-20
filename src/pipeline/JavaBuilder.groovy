@@ -50,7 +50,7 @@ private void buildMaven() {
 }
 
 void startPoint(String nodeName, String repoURL, String branchName){
-    List data = [
+    List<SpecialClass> data = [
             new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"),
             new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"),
             new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human")]
