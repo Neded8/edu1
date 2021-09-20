@@ -32,14 +32,13 @@ private void runMaven(command) {
     }
 }
 
-private void updateSprite(){
-    stage("Sprite update"){
+private void updateSprite() {
+    stage("Sprite update") {
         echo "[INFO] run bat file for move sprite"
         bat "C:\\Users\\vstup\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\MoveHumanSprite.bat"
     }
 
 }
-
 
 
 private void buildMaven() {
@@ -49,20 +48,15 @@ private void buildMaven() {
 }
 
 
-
 void runScript(String nodeName, String repoURL, String branchName, Collection<SpecialClass> specialList) {
-//    List<SpecialClass> specialList = Arrays.asList(
-//            new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"),
-//            new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"),
-//            new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"))
     node(nodeName) {
         cleanUp()
-        for (def i = 0; i< specialList.size(); i++){
-            dir("${env.WORKSPACE}/${i}"){
-                getSourceCode(specialList.get(i).sourceRepoURL,specialList.get(i).branchName)
+        for (def i = 0; i < specialList.size(); i++) {
+            dir("assets/${i}") {
+                getSourceCode(specialList.get(i).sourceRepoURL, specialList.get(i).branchName)
             }
         }
-        dir("${env.WORKSPACE}/Source") {
+        dir("source") {
             getSourceCode(repoURL, branchName)
             updateSprite()
             buildMaven()
