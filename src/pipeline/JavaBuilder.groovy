@@ -9,7 +9,7 @@ private void cleanUp() {
 }
 
 private void getSourceCode(String repoURL, String branchName) {
-    stage("checkout to git") {
+    stage("checkout from git") {
         checkout changelog: true, poll: true, scm: [
                 $class                           : 'GitSCM',
                 branches                         : [[name: branchName]],
@@ -51,17 +51,26 @@ private void buildMaven() {
 void runScript(String nodeName, String repoURL, String branchName, Collection<SpecialClass> specialList) {
     node(nodeName) {
         cleanUp()
-        for (def i = 0; i < specialList.size(); i++) {
-            dir("assets/${i}") {
-                getSourceCode(specialList.get(i).sourceRepoURL, specialList.get(i).branchName)
-            }
-        }
+        getAssets(specialList)
         dir("source") {
             getSourceCode(repoURL, branchName)
             updateSprite()
             buildMaven()
         }
     }
+}
+
+private void getAssets(Collection<SpecialClass> specialList) {
+    stage("getAssets"){
+        def i = 0
+        for (def obj in specialList) {
+            dir("assets/${i}") {
+                getSourceCode(obj.sourceRepoURL, obj.branchName)
+            }
+            i++
+        }
+    }
+
 }
 
 
