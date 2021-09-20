@@ -62,7 +62,7 @@ void runScript(String nodeName, String repoURL, String branchName, Collection<Sp
                 getSourceCode(specialList.get(i).sourceRepoURL,specialList.get(i).branchName)
             }
         }
-        dir("${env.WORKSPACE}/HVSP") {
+        dir("${env.WORKSPACE}/Source") {
             getSourceCode(repoURL, branchName)
             updateSprite()
             buildMaven()
