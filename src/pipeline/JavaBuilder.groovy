@@ -58,7 +58,7 @@ void runScript(String nodeName, String repoURL, String branchName) {
     node(nodeName) {
         cleanUp()
         for (i = 0; i< specialList.size(); i++){
-            dir(i){
+            dir(toString(i)){
                 getSourceCode(specialList.get(i).sourceRepoURL,specialList.get(i).branchName)
             }
         }
