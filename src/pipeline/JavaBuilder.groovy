@@ -50,14 +50,14 @@ private void buildMaven() {
 
 
 
-void runScript(String nodeName, String repoURL, String branchName) {
-    List<SpecialClass> specialList = Arrays.asList(
-            new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"),
-            new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"),
-            new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"))
+void runScript(String nodeName, String repoURL, String branchName, Collection<SpecialClass> specialList) {
+//    List<SpecialClass> specialList = Arrays.asList(
+//            new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"),
+//            new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"),
+//            new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"))
     node(nodeName) {
         cleanUp()
-        for (i = 0; i< specialList.size(); i++){
+        for (def i = 0; i< specialList.size(); i++){
             dir("${env.WORKSPACE}/${i}"){
                 getSourceCode(specialList.get(i).sourceRepoURL,specialList.get(i).branchName)
             }
