@@ -49,21 +49,18 @@ private void buildMaven() {
     }
 }
 
-void startPoint(String nodeName, String repoURL, String branchName){
-    List<SpecialClass> data = Arrays.asList(
+
+
+void runScript(String nodeName, String repoURL, String branchName) {
+    List<SpecialClass> specialList = Arrays.asList(
             new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"),
             new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"),
             new SpecialClass("https://github.com/Neded8/HVSP-Sprites.git","master","Sprites/Human"))
-    runScript(nodeName,repoURL,branchName,data)
-
-}
-
-void runScript(String nodeName, String repoURL, String branchName, List<SpecialClass> specialArray) {
     node(nodeName) {
         cleanUp()
-        for (i = 0; i< specialArray.size(); i++){
+        for (i = 0; i< specialList.size(); i++){
             dir(i){
-                getSourceCode(specialArray.get(i).sourceRepoURL,specialArray.get(i).branchName)
+                getSourceCode(specialList.get(i).sourceRepoURL,specialList.get(i).branchName)
             }
         }
         dir("${env.WORKSPACE}/HVSP") {
