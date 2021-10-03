@@ -75,7 +75,7 @@ private void getAssets(Collection<SpecialClass> specialList) {
                 getSourceCode(obj.sourceRepoURL, obj.branchName)
                 withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source"]) {
                     bat_file_path = "C:\\Users\\vstup\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\MoveHumanSprite.bat "
-                    bat_file_call = bat_file_path + obj.copyScript
+                    bat_file_call = bat_file_path + i + obj.copyScript
                     bat bat_file_call
                 }
             }
