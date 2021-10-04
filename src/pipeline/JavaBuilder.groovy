@@ -71,7 +71,7 @@ private void getAssets(Collection<SpecialClass> specialList) {
     stage("getAssets") {
         def i = 0
         for (def obj in specialList) {
-            dir("assets/${i}/Sprites") {
+            dir("assets/${i}/Sprites/Sprites") {
                 getSourceCode(obj.sourceRepoURL, obj.branchName)
                 withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source\\src\\main\\resources\\Sprites\\"]) {
                     bat(script:obj.copyScript)
