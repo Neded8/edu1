@@ -5,10 +5,10 @@ class SpecialClass {
     String branchName
     String copyScript
 
-    SpecialClass(String sourceRepoURL, String branchName, String folderPath) {
+    SpecialClass(String sourceRepoURL, String branchName, String copyScript) {
         this.sourceRepoURL = sourceRepoURL
         this.branchName = branchName
-        this.copyScript = folderPath
+        this.copyScript = copyScript
     }
 
 }

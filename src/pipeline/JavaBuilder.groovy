@@ -73,10 +73,9 @@ private void getAssets(Collection<SpecialClass> specialList) {
         for (def obj in specialList) {
             dir("assets/${i}") {
                 getSourceCode(obj.sourceRepoURL, obj.branchName)
-                withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source"]) {
-                    bat_file_path = "C:\\Users\\vstup\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\MoveHumanSprite.bat "
-                    bat_file_call = bat_file_path + i + " " + obj.copyScript
-                    bat bat_file_call
+                withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source\\src\\main\\resources\\Sprites\\"],["CURRENT_FOLDER=${i}"]) {
+                    bat(script:obj.copyScript)
+
                 }
             }
             i++
