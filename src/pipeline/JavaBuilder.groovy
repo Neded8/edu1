@@ -73,7 +73,7 @@ private void getAssets(Collection<SpecialClass> specialList) {
         for (def obj in specialList) {
             dir("assets/${i}") {
                 getSourceCode(obj.sourceRepoURL, obj.branchName)
-                withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source\\src\\main\\resources\\Sprites\\"],["CURRENT_FOLDER=${i}"]) {
+                withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source\\src\\main\\resources\\Sprites\\"]) {
                     bat(script:obj.copyScript)
 
                 }
