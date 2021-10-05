@@ -1,7 +1,5 @@
 package pipeline
 
-import groovy.json.JsonSlurper
-
 
 private void cleanUp() {
     stage("clean home directory") {
