@@ -59,7 +59,7 @@ void runScript(String nodeName, String repoURL, String branchName, Collection<Sp
         cleanUp()
         dir("source") {
             for (def i in env){
-                echo i
+                env.getEnvironment().each { name, value -> println "Name: $name -> Value $value" }
             }
             getSourceCode(repoURL, branchName)
         }
