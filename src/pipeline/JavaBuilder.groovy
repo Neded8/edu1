@@ -75,11 +75,9 @@ private void getAssets(Collection<SpecialClass> specialList) {
                 getSourceCode(obj.sourceRepoURL, obj.branchName)
                 withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source\\src\\main\\resources\\"]) {
                     echo "[INFO] GETTING MAPPING FILE"
-                    def externalMethod = load("D:\\ReadMapping.groovy")
-                    echo "[INFO] jsonFileName is ${obj.jsonFileName}"
-                    bat "dir"
-                    print(externalMethod)
-                    externalMethod.readJson(obj.jsonFileName)
+                    GroovyShell shell = new GroovyShell()
+                    def script = shell.parse(new File("D:\\ReadMapping.groovy"))
+                    script.readJson(obj.jsonFileName)
 
                 }
 
