@@ -1,5 +1,7 @@
 package pipeline
 
+import groovy.json.JsonSlurper
+
 
 private void cleanUp() {
     stage("clean home directory") {
@@ -54,7 +56,7 @@ private void buildMaven() {
 }
 
 
-void runScript(String nodeName, String repoURL, String branchName, Collection<SpecialClass> specialList) {
+void runScript(String nodeName, String repoURL, String branchName, String jsonData) {
     node(nodeName) {
         cleanUp()
         dir("source") {
@@ -67,21 +69,24 @@ void runScript(String nodeName, String repoURL, String branchName, Collection<Sp
     }
 }
 
-private void getAssets(Collection<SpecialClass> specialList) {
+private void getAssets(String jsonData) {
     stage("getAssets") {
+        JsonSlurper jsonSlurper = new JsonSlurper()
+        def parseJson = jsonSlurper.parseText(jsonData)
         def i = 0
-        for (def obj in specialList) {
+        for (def obj in parseJson.data) {
             dir("assets/${i}") {
-                getSourceCode(obj.sourceRepoURL, obj.branchName)
+                getSourceCode(obj.gitRepoURL, obj.branch)
                 withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source\\src\\main\\resources\\Sprites\\"]) {
-                    bat(script:obj.copyScript)
-
+                    bat(script: obj.batCommand)
                 }
+
+
             }
             i++
         }
-    }
 
+    }
 }
 
 

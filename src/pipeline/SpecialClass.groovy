@@ -5,7 +5,7 @@ class SpecialClass {
     String branchName
     String copyScript
 
-    SpecialClass(String sourceRepoURL, String branchName, String copyScript) {
+    SpecialClass(String sourceRepoURL, String branchName, String copyScript = "copy.bat") {
         this.sourceRepoURL = sourceRepoURL
         this.branchName = branchName
         this.copyScript = copyScript
