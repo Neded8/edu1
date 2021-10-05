@@ -58,9 +58,6 @@ void runScript(String nodeName, String repoURL, String branchName, Collection<Sp
     node(nodeName) {
         cleanUp()
         dir("source") {
-            for (def i in env){
-                env.getEnvironment().each { name, value -> println "Name: $name -> Value $value" }
-            }
             getSourceCode(repoURL, branchName)
         }
         getAssets(specialList)
@@ -76,8 +73,9 @@ private void getAssets(Collection<SpecialClass> specialList) {
         for (def obj in specialList) {
             dir("assets/${i}") {
                 getSourceCode(obj.sourceRepoURL, obj.branchName)
-                withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source\\src\\main\\resources\\Sprites\\"], "MAPPING_SCRIPT_FOLDER=${env.WORKSPACE}") {
-                    def externalMethod = load("%MAPPING_SCRIPT_FOLDER%\\${obj.copyScript}")
+                withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source\\src\\main\\resources\\Sprites\\"]) {
+                    echo "[INFO] GETTING MAPPING FILE"
+                    def externalMethod = load("D:\\ReadMapping.groovy")
                     externalMethod.readJson(obj.jsonFileName)
 
                 }
