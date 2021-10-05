@@ -76,6 +76,7 @@ private void getAssets(Collection<SpecialClass> specialList) {
                 withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source\\src\\main\\resources\\Sprites\\"]) {
                     echo "[INFO] GETTING MAPPING FILE"
                     def externalMethod = load("D:\\ReadMapping.groovy")
+                    echo "[INFO] jsonFileName is ${obj.jsonFileName}"
                     externalMethod.readJson(obj.jsonFileName)
 
                 }
