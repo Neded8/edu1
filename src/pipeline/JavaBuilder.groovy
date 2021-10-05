@@ -78,7 +78,7 @@ private void getAssets(Collection<SpecialClass> specialList) {
                     bat "dir"
                     GroovyShell shell = new GroovyShell()
                     def script = shell.parse(new File("D:\\ReadMapping.groovy"))
-
+                    echo "[INFO] Running script"
                     script.readJson("C:\\Users\\vstup\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\edu1\\assets\\0\\MappingData.txt")
 
 
