@@ -58,7 +58,7 @@ void runScript(String nodeName, String repoURL, String branchName, Collection<Sp
     node(nodeName) {
         cleanUp()
         dir("source") {
-            echo sh(returnStdout: true, script: 'env')
+            env.each {println it}
             getSourceCode(repoURL, branchName)
         }
         getAssets(specialList)
