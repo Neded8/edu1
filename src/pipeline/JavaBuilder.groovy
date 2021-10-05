@@ -77,6 +77,7 @@ private void getAssets(Collection<SpecialClass> specialList) {
                     echo "[INFO] GETTING MAPPING FILE"
                     def externalMethod = load("D:\\ReadMapping.groovy")
                     echo "[INFO] jsonFileName is ${obj.jsonFileName}"
+                    bat "dir"
                     externalMethod.readJson(obj.jsonFileName)
 
                 }
