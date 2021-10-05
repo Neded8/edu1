@@ -56,7 +56,7 @@ private void buildMaven() {
 }
 
 
-void runScript(String nodeName, String repoURL, String branchName, String jsonData) {
+void runScript(String nodeName, String repoURL, String branchName, Collection<SpecialClass> specialList) {
     node(nodeName) {
         cleanUp()
         dir("source") {
@@ -69,16 +69,16 @@ void runScript(String nodeName, String repoURL, String branchName, String jsonDa
     }
 }
 
-private void getAssets(String jsonData) {
+private void getAssets(Collection<SpecialClass> specialList) {
     stage("getAssets") {
-        JsonSlurper jsonSlurper = new JsonSlurper()
-        def parseJson = jsonSlurper.parseText(jsonData)
         def i = 0
-        for (def obj in parseJson.data) {
+        for (def obj in specialList) {
             dir("assets/${i}") {
-                getSourceCode(obj.gitRepoURL, obj.branch)
-                withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source\\src\\main\\resources\\Sprites\\"]) {
-                    bat(script: obj.batCommand)
+                getSourceCode(obj.sourceRepoURL, obj.branchName)
+                withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source\\src\\main\\resources\\Sprites\\"], "MAPPING_SCRIPT_FOLDER=${env.WORKSPACE}") {
+                    def externalMethod = load("%MAPPING_SCRIPT_FOLDER%\\${obj.copyScript}")
+                    externalMethod.readJson(obj.jsonFileName)
+
                 }
 
 
