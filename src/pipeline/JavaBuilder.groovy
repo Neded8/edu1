@@ -77,7 +77,7 @@ private void getAssets(Collection<SpecialClass> specialList) {
                     echo "[INFO] GETTING MAPPING FILE"
                     def script = load "D:\\ReadMapping.groovy"
                     echo "[INFO] Running script"
-                    bat "%cd%"
+                    bat "dir"
                     script.readJson(obj.jsonFileName)
 
 
