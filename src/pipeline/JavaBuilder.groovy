@@ -67,6 +67,11 @@ void runScript(String nodeName, String repoURL, String branchName, Collection<Sp
     }
 }
 
+def getFolderName() {
+    def array = pwd().split("/")
+    return array[array.length - 2]
+}
+
 private void getAssets(Collection<SpecialClass> specialList) {
     stage("getAssets") {
         def i = 0
@@ -77,8 +82,9 @@ private void getAssets(Collection<SpecialClass> specialList) {
                     echo "[INFO] GETTING MAPPING FILE"
                     def script = load "D:\\ReadMapping.groovy"
                     echo "[INFO] Running script"
-                    String jsonWay = bat "cd"
-                    jsonWay += "\\"+obj.jsonFileName
+                    def foldername = getFolderName()
+
+                    print "${foldername}"
                     script.readJson(jsonWay)
 
 
@@ -91,6 +97,8 @@ private void getAssets(Collection<SpecialClass> specialList) {
 
     }
 }
+
+
 
 
 return this
