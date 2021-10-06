@@ -83,9 +83,8 @@ private void getAssets(Collection<SpecialClass> specialList) {
                     def script = load "D:\\ReadMapping.groovy"
                     echo "[INFO] Running script"
                     def foldername = getFolderName()
-
-                    print "${foldername}"
-                    script.readJson(jsonWay)
+                    foldername += "\\" + obj.jsonFileName
+                    script.readJson(foldername)
 
 
                 }
