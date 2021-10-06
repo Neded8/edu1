@@ -75,7 +75,6 @@ private void getAssets(Collection<SpecialClass> specialList) {
                 getSourceCode(obj.sourceRepoURL, obj.branchName)
                 withEnv(["SOURCE_FOLDER=${env.WORKSPACE}\\source\\src\\main\\resources\\"]) {
                     echo "[INFO] GETTING MAPPING FILE"
-                    bat "dir"
                     def script = load "D:\\ReadMapping.groovy"
                     echo "[INFO] Running script"
                     script.readJson("C:\\Users\\vstup\\AppData\\Local\\Jenkins\\.jenkins\\workspace\\edu1\\assets\\0\\MappingData.txt")
